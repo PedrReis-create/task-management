@@ -1,0 +1,33 @@
+body {
+    font : normal 10pt Arial;
+    background: rgb(200, 120, 250);
+}
+
+header{
+    color:white;
+    text-align: center;
+}
+
+section {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    width: 500px;
+    margin: auto;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.363);
+}
+
+input {
+    margin-right: 10px;
+    text-align: center;
+}
+
+button {
+    margin-bottom: 15px;
+}
+
+footer{
+    text-align: center;
+    color : white;
+}
+
