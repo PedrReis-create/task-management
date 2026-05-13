@@ -17,10 +17,7 @@ function addTask() {
     taskItem.innerText = capitalizeFirstLetter(taskText);
 
     let add1 = taskList.appendChild(taskItem); // adding to list
-    //-------Local storage
-    window.localStorage.setItem('tasks', taskText)
-    let taskLocal = window.localStorage.getItem('tasks');
-
+    localStorage.setItem('task1S', taskText)
     //when addTask() : clean input
     document.getElementById('tasks').value = ''
     //////////////////-------------------------------------------------
@@ -71,3 +68,16 @@ function completeTask(button2) {
     let buttonParent2 = button2.parentElement;
     buttonParent2.style.textDecoration = 'line-through';
 };
+
+function loadTask () {
+    const savedTask = localStorage.getItem('task1S')
+
+    if(savedTask){
+        const taskList = window.document.getElementById('taskList')
+
+        let li = document.createElement('li')
+        li.textContent = savedTask
+        taskList.appendChild(li)
+    }
+}
+loadTask()
