@@ -1,83 +1,77 @@
 function addTask() {
-    let taskText = window.document.getElementById('tasks').value; // text typed by user
+    let taskText = document.getElementById('tasks').value;
+
     // if empty
     if (taskText === '') {
-        window.alert('Add a valid text');
+        alert('Add a valid text');
         return;
-    };
+    }
 
-    const taskList = window.document.getElementById('taskList'); // getting the list
+    localStorage.setItem('task1S', taskText);
 
-    let taskItem = document.createElement('li'); // add to list
+    createTaskElement(taskText);
+
+    // clean input
+    document.getElementById('tasks').value = '';
+}
+
+function createTaskElement(task) {
 
     function capitalizeFirstLetter(text) {
         return text.charAt(0).toUpperCase() + text.slice(1);
     }
 
-    taskItem.innerText = capitalizeFirstLetter(taskText);
+    const taskList = document.getElementById('taskList');
 
-    let add1 = taskList.appendChild(taskItem); // adding to list
-    localStorage.setItem('task1S', taskText)
-    //when addTask() : clean input
-    document.getElementById('tasks').value = ''
-    //////////////////-------------------------------------------------
+    let taskItem = document.createElement('li');
 
-    // remove button variable
+    taskItem.textContent = capitalizeFirstLetter(task);
+
+    // remove button
     const removeButton = document.createElement('button');
 
-    // removeButton style
     removeButton.textContent = 'Remove task';
     removeButton.style.padding = '3px';
     removeButton.style.marginLeft = '10px';
 
-    // adding
     taskItem.appendChild(removeButton);
 
-    // when clicked, calls function
     removeButton.onclick = function () {
-        removeTask(removeButton)
+        removeTask(removeButton);
     };
 
-    //////////////////-------------------------------------------------
-
-    // done task button
+    // done button
     const doneButton = document.createElement('button');
 
-    // doneButton style
     doneButton.textContent = 'Done';
     doneButton.style.padding = '3px';
     doneButton.style.marginLeft = '10px';
 
-    // adding
     taskItem.appendChild(doneButton);
 
-    // when clicked, calls function
     doneButton.onclick = function () {
-        completeTask(doneButton)
+        completeTask(doneButton);
     };
 
+    taskList.appendChild(taskItem);
 }
+
+function loadTask() {
+    const savedTask = localStorage.getItem('task1S');
+
+    if (savedTask) {
+        createTaskElement(savedTask);
+    }
+}
+
+loadTask();
 
 function removeTask(button) {
     let buttonParent = button.parentElement;
     buttonParent.remove();
-
-};
-
-function completeTask(button2) {
-    let buttonParent2 = button2.parentElement;
-    buttonParent2.style.textDecoration = 'line-through';
-};
-
-function loadTask () {
-    const savedTask = localStorage.getItem('task1S')
-
-    if(savedTask){
-        const taskList = window.document.getElementById('taskList')
-
-        let li = document.createElement('li')
-        li.textContent = savedTask
-        taskList.appendChild(li)
-    }
 }
-loadTask()
+
+function completeTask(button) {
+    let buttonParent = button.parentElement;
+    buttonParent.style.textDecoration = 'line-through';
+}
