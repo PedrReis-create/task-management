@@ -9,7 +9,6 @@ A project made with HTML, CSS and JavaScript.
 - Create tasks
 - Remove tasks
 - Mark tasks as completed
-- LocalStorage
 
 ## Goal
 

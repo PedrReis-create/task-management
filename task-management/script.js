@@ -56,16 +56,6 @@ function createTaskElement(task) {
     taskList.appendChild(taskItem);
 }
 
-function loadTask() {
-    const savedTask = localStorage.getItem('task1S');
-
-    if (savedTask) {
-        createTaskElement(savedTask);
-    }
-}
-
-loadTask();
-
 function removeTask(button) {
     let buttonParent = button.parentElement;
     buttonParent.remove();
